@@ -221,7 +221,7 @@ microstate_file = os.path.join(data_folder, "aggregated_microstate_occurrences.c
 hormones_file = os.path.join(os.getcwd(), 'data', "hormones_data.csv")
 psi_file = os.path.join(os.getcwd(), 'data', "psi_data.csv")
 output_folder = data_folder
-r_folder = os.path.join(os.getcwd(), "src", "r")
+r_folder = os.path.join(os.getcwd(), "src", "r", "data")
 process_microstate_hormones(n_peaks, n_microstates, microstate_file, hormones_file, output_folder)
 process_microstate_psi(microstate_file, psi_file, output_folder)
 
