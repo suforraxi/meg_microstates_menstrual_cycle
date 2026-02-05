@@ -4,8 +4,8 @@ library(ggplot2)
 library(grid)
 
 # 1. Define paths
-path7 <- "/Users/matte/Desktop/git_rep/women_cycle/src/r/figure/Microstate_7_Plot_across_phases.tiff"
-path2 <- "/Users/matte/Desktop/git_rep/women_cycle/src/r/figure/Microstate_2_Plot_across_phases.tiff"
+path7 <- "./figures/violins/Microstate_z_7_Plot_across_phases.tiff"
+path2 <- "./figures/violins/Microstate_Z_2_Plot_across_phases.tiff"
 
 # 2. Read images
 img7 <- magick::image_read(path7)
@@ -37,5 +37,5 @@ final_plot <- p1 + p2 +
 print(final_plot)
 
 # Optional: Save with high resolution for your paper
-ggsave("/Users/matte/Desktop/git_rep/women_cycle/src/r/figure/Combined_Maps_violin_7_2.png", 
+ggsave("./figures/Combined_Maps_violin_7_2.png", 
         final_plot, width = 12, height = 6, dpi = 600)

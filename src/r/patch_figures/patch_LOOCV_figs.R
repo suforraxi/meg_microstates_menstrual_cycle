@@ -4,7 +4,7 @@ library(ggplot2)
 library(grid)
 
 # 1. Setup paths for the new files
-base_path <- "/Users/matte/Desktop/git_rep/women_cycle/src/r/figure/"
+base_path <- "./figures/"
 loocv_files <- c(
   "LOOCV_Observed_vs_Predicted_PersonalGrowth.tiff",
   "LOOCV_Residuals_PersonalGrowth.tiff"

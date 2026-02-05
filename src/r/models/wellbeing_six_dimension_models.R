@@ -5,8 +5,8 @@ library(MuMIn)
 library(ggplot2)
 
 # --- 1. DATA PREP & MERGING ---
-df <- read.csv("/Users/matte/Desktop/git_rep/women_cycle/src/r/data/data_microstate_7_for_R.csv")
-df_demo <- read.csv("/Users/matte/Desktop/git_rep/women_cycle/src/r/data/demographics.csv")
+df <- read.csv("./data/data_microstate_7_for_R.csv")
+df_demo <- read.csv("./data/demographics.csv")
 
 # Standardize and merge
 df$sub <- as.character(df$sub)
@@ -59,7 +59,7 @@ final_table <- rbind(global_lrt, sub_lrt)
 print(final_table %>% mutate(across(where(is.numeric), ~ round(., 2))))
 
 # --- 4. PREDICTIVE VALIDATION (LOOCV) ---
-loocv_lmer <- function(formula, data, out_dir = "/Users/matte/Desktop/git_rep/women_cycle/src/r/figure/") {
+loocv_lmer <- function(formula, data, out_dir = "./figures/") {
   # Extract the dependent variable name
   dependent_var <- all.vars(formula)[1]
   
@@ -69,7 +69,7 @@ loocv_lmer <- function(formula, data, out_dir = "/Users/matte/Desktop/git_rep/wo
   r2_marginal <- numeric(nrow(data)); r2_conditional <- numeric(nrow(data))
   
   # LOOCV Loop
-  for (i in 1:nrow(data)) {
+  for (i in 1:nrow(data)) {1
     train_data <- data[-i, ]; test_data <- data[i, ]
     model <- lmer(formula, data = train_data)
     

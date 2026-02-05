@@ -1,7 +1,7 @@
 library(ggplot2)
 
 # Load the dataset
-data <- read.csv("/Users/matte/Desktop/git_rep/women_cycle/src/r/data/merged_data_microstates_for_R.csv")
+data <- read.csv("./data/merged_data_microstates_for_R.csv")
 
 data$Session <- as.factor(data$Session)
 # Ensure 'sub' is treated as a factor (random effect grouping variable)
@@ -26,7 +26,7 @@ plot_vars <- list(
 )
 
 # Output directory
-out_dir <- "/Users/matte/Desktop/git_rep/women_cycle/src/r/figure/violins/"
+out_dir <- "./figures/violins/"
 
 # --- 2. LOOP ---
 for (var_name in names(plot_vars)) {

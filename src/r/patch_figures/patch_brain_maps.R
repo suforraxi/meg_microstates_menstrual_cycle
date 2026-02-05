@@ -5,7 +5,7 @@ library(magick)
 library(ggplot2)
 
 # 2. Set the path and list the files
-img_path <- "/Users/matte/Desktop/microstate_plots_abs/"
+img_path <- "./figures/brains/"
 # We list only .png files and sort them to ensure Microstate 1 comes before 10
 files <- list.files(img_path, pattern = "\\.png$", full.names = TRUE)
 files <- sort(files) # Standard alphanumeric sort
@@ -55,7 +55,7 @@ final_composite <- (row1 / row2 / row3 / row4) +
   )
 
 # 4. Save
-ggsave("/Users/matte/Desktop/git_rep/women_cycle/src/r/figure/FINAL_DESIGN_CENTERED_4_4_2.tiff", 
+ggsave("./figures/FINAL_DESIGN_CENTERED_4_4_2.tiff", 
        plot = final_composite, width = 12, height = 14, dpi = 600, compression = "lzw")
 
 print(final_composite)

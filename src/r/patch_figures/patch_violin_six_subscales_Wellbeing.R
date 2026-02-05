@@ -4,7 +4,7 @@ library(ggplot2)
 library(grid)
 
 # 1. Setup paths and filenames
-base_path <- "/Users/matte/Desktop/git_rep/women_cycle/src/r/figure/violins/"
+base_path <- "./figures/violins/"
 files <- c(
   "Autonomy_Plot_across_phases.tiff",
   "EnvironmentalMastery_Plot_across_phases.tiff",
@@ -46,5 +46,5 @@ final_wellbeing_plot <- wrap_plots(plot_list) +
 print(final_wellbeing_plot)
 
 # 6. Save as high-resolution TIFF for publication
-ggsave("/Users/matte/Desktop/git_rep/women_cycle/src/r/figure/Combined_Wellbeing_Subscales_3x2.tiff", 
+ggsave("./figures/Combined_Wellbeing_Subscales_3x2.tiff", 
        final_wellbeing_plot, width = 15, height = 10, dpi = 600, compression = "lzw")

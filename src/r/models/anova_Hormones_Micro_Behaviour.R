@@ -2,7 +2,7 @@ library(lmerTest)
 library(dplyr)
 
 # --- 1. Load and Prep Data ---
-data <- read.csv("/Users/matte/Desktop/git_rep/women_cycle/src/r/data/merged_data_microstates_for_R.csv")
+data <- read.csv("./merged_data_microstates_for_R.csv")
 data$Session <- as.factor(data$Session)
 data$sub <- as.factor(data$sub)
 
@@ -70,11 +70,11 @@ master_tukey_table <- do.call(rbind, lapply(all_processed, function(x) x$tukey))
 
 # Save files
 write.csv(master_anova_table, 
-          "/Users/matte/Desktop/git_rep/women_cycle/src/r/tables/Main_ANOVA_Effects.csv", 
+          "./tables/Main_ANOVA_Effects.csv", 
           row.names = FALSE)
 
 write.csv(master_tukey_table, 
-          "/Users/matte/Desktop/git_rep/women_cycle/src/r/tables/PostHoc_Results_Summary_3digits.csv", 
+          "./tables/PostHoc_Results_Summary_3digits.csv", 
           row.names = FALSE)
 
 cat("Success! Two tables saved: 'Main_ANOVA_Effects.csv' and 'PostHoc_Results_Summary_3digits.csv'")

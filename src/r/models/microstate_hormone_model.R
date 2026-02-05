@@ -4,7 +4,7 @@ library(performance)
 
 # --- 1. DATA SETUP ---
 # Standardizing paths and factor types
-data_path <- "/Users/matte/Desktop/git_rep/women_cycle/src/r/data/merged_data_microstates_for_R.csv"
+data_path <- "./merged_data_microstates_for_R.csv"
 df <- read.csv(data_path)
 
 df$sub     <- as.factor(df$sub)

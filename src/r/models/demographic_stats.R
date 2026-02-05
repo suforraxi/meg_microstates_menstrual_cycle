@@ -1,7 +1,7 @@
 library(dplyr)
 
 # --- 1. Load the demographic data ---
-path_demo <- "/Users/matte/Desktop/git_rep/women_cycle/src/r/data/demographics.csv"
+path_demo <- "./data/demographics.csv"
 df_demo <- read.csv(path_demo)
 
 # --- 2. Compute Mean and Standard Deviation ---
