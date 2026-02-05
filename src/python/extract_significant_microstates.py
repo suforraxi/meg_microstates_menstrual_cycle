@@ -209,20 +209,19 @@ def plot_occurrences_per_subject(df, output_folder):
 # Example usage
 n_peaks = '1000'
 n_microstates = 13
-
-data_folder = f'C:\\Users\\Admin\\Desktop\\matteo\\results\\mc_microstate\\{n_peaks}\\{n_microstates}_backfitted_microstates\\combined'
+base_folder= os.path.join(os.getcwd(), 'results', n_peaks)
+data_folder = os.path.join(base_folder, f'{n_microstates}_backfitted_microstates', 'combined')
 microstates = [2, 7]
 psi_labels = ['Autonomy', 'EnvironmentalMastery',
               'PersonalGrowth', 'PositiveRelationswithOthers', 
               'PurposeinLife', 'Self-Acceptance']
 hormones = ['E', 'P', 'FSH','LH']
 
-microstate_file = f'C:\\Users\\Admin\\Desktop\\matteo\\results\\mc_microstate\\{n_peaks}\\{n_microstates}_backfitted_microstates\\combined\\aggregated_microstate_occurrences.csv'
-hormones_file = 'C:\\Users\\Admin\\Desktop\\matteo\\results\\mc_microstate\\data_extra_hormones\\hormones_data.csv'
-psi_file = 'C:\\Users\\Admin\\Desktop\\matteo\\results\\mc_microstate\\data_extra_hormones\\psi_data.csv'
-output_folder = f'C:\\Users\\Admin\\Desktop\\matteo\\results\\mc_microstate\\{n_peaks}\\{n_microstates}_backfitted_microstates\\combined'
-r_folder = 'C:\\Users\\Admin\\Desktop\\matteo\\git_repo\\meg_microstates_menstrual_cycle\\src\\r'
-
+microstate_file = os.path.join(data_folder, "aggregated_microstate_occurrences.csv")
+hormones_file = os.path.join(os.getcwd(), 'data', "hormones_data.csv")
+psi_file = os.path.join(os.getcwd(), 'data', "psi_data.csv")
+output_folder = data_folder
+r_folder = os.path.join(os.getcwd(), "src", "r")
 process_microstate_hormones(n_peaks, n_microstates, microstate_file, hormones_file, output_folder)
 process_microstate_psi(microstate_file, psi_file, output_folder)
 
@@ -232,8 +231,8 @@ plot_occurrences_per_subject(microstate_df, output_folder)
 
 for microstate in microstates:
     # Load the data
-    hormones_file = f'{data_folder}\\combined_hormones_microstates_Microstate_{microstate}.csv'
-    psi_file = f'{data_folder}\\combined_psi_microstates_Microstate_{microstate}.csv'
+    hormones_file = os.path.join(data_folder, f'combined_hormones_microstates_Microstate_{microstate}.csv')
+    psi_file = os.path.join(data_folder, f'combined_psi_microstates_Microstate_{microstate}.csv')
     
     hormones_df = pd.read_csv(hormones_file)
     psi_df = pd.read_csv(psi_file)
