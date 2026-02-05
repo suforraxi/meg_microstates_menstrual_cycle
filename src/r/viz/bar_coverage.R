@@ -3,7 +3,7 @@ library(readr)
 library(dplyr)
 
 # 1. Configurazione percorsi e parametri
-folder_res <- '/Users/matte/Desktop/git_rep/women_cycle/reports/microstate_results/24_1000_abs_peaks/13_backfitted_microstates/combined/'
+folder_res <- './data/'
 agg_occurrences_f <- file.path(folder_res, 'aggregated_microstate_occurrences.csv')
 mapOI <- 7
 
@@ -52,5 +52,5 @@ print(p_alpha)
 
 # 3. Export
 #ggsave("micro.png", plot = p_alpha, width = 11, height = 5, dpi = 300)
-ggsave("/Users/matte/Desktop/git_rep/women_cycle/src/r/figure/BAR_Microstate_map_7_across_phases.tiff", plot = p_alpha, 
+ggsave("./figures/BAR_Microstate_map_7_across_phases.tiff", plot = p_alpha, 
        width = 8, height = 6, units = "in", dpi = 600, compression = "lzw")
