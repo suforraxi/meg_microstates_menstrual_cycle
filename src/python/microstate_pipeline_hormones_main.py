@@ -27,9 +27,8 @@ if __name__ == "__main__":
     start_microstates = 2
     end_microstates = 41
     # output directory
-    base_output_dir = os.path.join(os.getcwd(), 'results', '1000')
-    
-    if not os.path.exists(base_output_dir):\
+    base_output_dir = os.path.join(os.getcwd(), 'results', '1000')  
+    if not os.path.exists(base_output_dir):
         os.makedirs(base_output_dir)
     # Define sessions
     sessions = ['01', '02', '03']
