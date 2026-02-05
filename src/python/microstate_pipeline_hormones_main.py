@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.append('/Users/matte/Desktop/git_rep/microstate_based_on_stats')
+sys.path.append("C:\\Users\\Admin\\Desktop\\matteo\\git_repo\\microstate_based_on_stats\\")
 
 from micros_based_stats.microstate_analysis import (extract_peaks,
                                  concatenate_peaks,
@@ -15,7 +15,7 @@ if __name__ == "__main__":
     n_subjects = 27 # change according to your dataset
     subject_list = [f"{i:02d}" for i in range(1, n_subjects+1) if i not in [8, 14, 24]]  # Subject IDs from '01'
     # bids root directory
-    bids_root = '/Users/matte/Desktop/Naples_data/bids_hormones'
+    bids_root = "Z:\\bids_hormones\\"
     n_peaks = 1000  # Number of GFP peaks to select from each acquisition of session of each subject
     peak_distance = 10  # Minimum distance between peaks in samples
     method = 'kmod'  # Specify the clustering method (e.g., 'kmeans', 'pca')
@@ -27,8 +27,8 @@ if __name__ == "__main__":
     start_microstates = 2
     end_microstates = 41
     # output directory
-    base_output_dir = '/Users/matte/Desktop/git_rep/women_cycle/reports/microstate_results/24_1000_abs_peaks/'
-    if not os.path.exists(base_output_dir):
+    base_output_dir = 'C:\\Users\\Admin\\Desktop\\matteo\\results\\mc_microstate\\1000'
+    if not os.path.exists(base_output_dir):\
         os.makedirs(base_output_dir)
     # Define sessions
     sessions = ['01', '02', '03']
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     if not os.path.exists(base_output_dir):
         os.makedirs(base_output_dir)
     # Directory to save individual subject peaks
-    save_dir_peaks = os.path.join(base_output_dir, 'individual_subj_peaks/')
+    save_dir_peaks = os.path.join(base_output_dir, 'individual_subj_peaks')
 
      # Save parameters to a .txt file
     parameters_file = os.path.join(base_output_dir, "parameters.txt")
