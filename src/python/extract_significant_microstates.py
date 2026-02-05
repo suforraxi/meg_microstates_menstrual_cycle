@@ -63,7 +63,7 @@ def process_microstate_psi(microstate_file, psi_file, output_folder):
         final_df = merged_df[['sub', 'Session', 'Psi_Label', 'Psi_Value', 'Occurrences_zscore', 'Occurrences']]
         
         # Save the final DataFrame to a CSV file
-        output_file = f'{output_folder}combined_psi_microstates_Microstate_{microstate}.csv'
+        output_file = os.path.join(output_folder, f'combined_psi_microstates_Microstate_{microstate}.csv')
         final_df.to_csv(output_file, index=False)
         print(f"Final DataFrame for Microstate {microstate} created and saved to:", output_file)
 
@@ -120,7 +120,7 @@ def process_microstate_hormones(n_peaks, n_microstates, microstate_file, hormone
         final_df = merged_df[['sub', 'Session', 'Hormone', 'Hormone_Value', 'Occurrences','Occurrences_zscore']]
         
         # Save the final DataFrame to a CSV file
-        output_file = f'{output_folder}combined_hormones_microstates_Microstate_{microstate}.csv'
+        output_file = os.path.join(output_folder, f'combined_hormones_microstates_Microstate_{microstate}.csv')
         final_df.to_csv(output_file, index=False)
         print(f"Final DataFrame for Microstate {microstate} created and saved to:", output_file)
 
@@ -207,20 +207,21 @@ def plot_occurrences_per_subject(df, output_folder):
     plt.close()
 
 # Example usage
-n_peaks = '24_1000_abs'
+n_peaks = '1000'
 n_microstates = 13
-data_folder = f'./reports/microstate_results/{n_peaks}_peaks/{n_microstates}_backfitted_microstates/combined'
+
+data_folder = f'C:\\Users\\Admin\\Desktop\\matteo\\results\\mc_microstate\\{n_peaks}\\{n_microstates}_backfitted_microstates\\combined'
 microstates = [2, 7]
 psi_labels = ['Autonomy', 'EnvironmentalMastery',
               'PersonalGrowth', 'PositiveRelationswithOthers', 
               'PurposeinLife', 'Self-Acceptance']
 hormones = ['E', 'P', 'FSH','LH']
 
-microstate_file = f'./reports/microstate_results/{n_peaks}_peaks/{n_microstates}_backfitted_microstates/combined/aggregated_microstate_occurrences.csv'
-hormones_file = './data/hormones_data.csv'
-psi_file = './data/psi_data.csv'
-output_folder = f'./reports/microstate_results/{n_peaks}_peaks/{n_microstates}_backfitted_microstates/combined/'
-r_folder = './src/r'
+microstate_file = f'C:\\Users\\Admin\\Desktop\\matteo\\results\\mc_microstate\\{n_peaks}\\{n_microstates}_backfitted_microstates\\combined\\aggregated_microstate_occurrences.csv'
+hormones_file = 'C:\\Users\\Admin\\Desktop\\matteo\\results\\mc_microstate\\data_extra_hormones\\hormones_data.csv'
+psi_file = 'C:\\Users\\Admin\\Desktop\\matteo\\results\\mc_microstate\\data_extra_hormones\\psi_data.csv'
+output_folder = f'C:\\Users\\Admin\\Desktop\\matteo\\results\\mc_microstate\\{n_peaks}\\{n_microstates}_backfitted_microstates\\combined'
+r_folder = 'C:\\Users\\Admin\\Desktop\\matteo\\git_repo\\meg_microstates_menstrual_cycle\\src\\r'
 
 process_microstate_hormones(n_peaks, n_microstates, microstate_file, hormones_file, output_folder)
 process_microstate_psi(microstate_file, psi_file, output_folder)
@@ -231,8 +232,8 @@ plot_occurrences_per_subject(microstate_df, output_folder)
 
 for microstate in microstates:
     # Load the data
-    hormones_file = f'{data_folder}/combined_hormones_microstates_Microstate_{microstate}.csv'
-    psi_file = f'{data_folder}/combined_psi_microstates_Microstate_{microstate}.csv'
+    hormones_file = f'{data_folder}\\combined_hormones_microstates_Microstate_{microstate}.csv'
+    psi_file = f'{data_folder}\\combined_psi_microstates_Microstate_{microstate}.csv'
     
     hormones_df = pd.read_csv(hormones_file)
     psi_df = pd.read_csv(psi_file)
