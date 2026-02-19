@@ -1,7 +1,5 @@
 import os
 import sys
-sys.path.append("C:\\Users\\Admin\\Desktop\\matteo\\git_repo\\microstate_based_on_stats\\")
-
 from micros_based_stats.microstate_analysis import (extract_peaks,
                                  concatenate_peaks,
                                  segment_microstates_peaks,
@@ -15,7 +13,7 @@ if __name__ == "__main__":
     n_subjects = 27 # change according to your dataset
     subject_list = [f"{i:02d}" for i in range(1, n_subjects+1) if i not in [8, 14, 24]]  # Subject IDs from '01'
     # bids root directory
-    bids_root = "Z:\\bids_hormones\\"
+    bids_root = "Z:\\bids_hormones\\" # bids root directory, change according to your dataset
     n_peaks = 1000  # Number of GFP peaks to select from each acquisition of session of each subject
     peak_distance = 10  # Minimum distance between peaks in samples
     method = 'kmod'  # Specify the clustering method (e.g., 'kmeans', 'pca')
