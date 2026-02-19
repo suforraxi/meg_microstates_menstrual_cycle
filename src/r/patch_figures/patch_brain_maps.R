@@ -4,7 +4,6 @@ library(patchwork)
 library(magick)
 library(ggplot2)
 
-# 2. Set the path and list the files
 img_path <- "./figures/brains/"
 # We list only .png files and sort them to ensure Microstate 1 comes before 10
 files <- list.files(img_path, pattern = "\\.png$", full.names = TRUE)
@@ -17,21 +16,21 @@ img_list <- lapply(files, function(f) {
   wrap_elements(panel = grid::rasterGrob(img))
 })
 
-
-# 1. Create a 3x4 grid for the first 12
-#top_grid <- wrap_plots(img_list[1:12], ncol = 4)
-
-# 2. Create a row for the 13th plot with spacers to push it to the middle
-# Using 1 spacer on each side of the plot in a 3-column sub-layout
-#bottom_row <- plot_spacer() + img_list[[13]] + plot_spacer() + plot_layout(widths = c(1, 1, 1))
-
-# 3. Stack them
-#final_grid_centered <- (top_grid / bottom_row) + 
-#  plot_layout(heights = c(3, 1)) # The top takes 3 parts, bottom takes 1
-
-# Define a helper to extract images by their "Microstate Number" 
+# Define a helper to extract images by their "Microstate Number"
 # (Assuming img_list[1] is MS1, img_list[2] is MS2, etc.)
-ms <- function(n) img_list[[n]]
+#ms <- function(n) img_list[[n]]
+ms <- function(n) {
+  img_list[[n]] + 
+    labs(title = paste("Microstate map ", n-1)) + 
+    theme(
+      plot.title = element_text(
+        hjust = 0.5,          # Centers the title
+        size = 14,            # Adjust size as needed
+        face = "bold",        # Matches your violin plot style
+        margin = margin(b = 5) # Adds a little space below the title
+      )
+    )
+}
 
 # 2. Construct each row individually
 # Row 1 (4 images): Naturally fills the width
@@ -48,14 +47,14 @@ row3 <- plot_spacer() + ms(10) + ms(4)  + plot_spacer() + plot_layout(ncol = 4, 
 row4 <- plot_spacer() + ms(6) + ms(7) + ms(13) + plot_spacer() + plot_layout(ncol = 5, widths = c(0.5, 1, 1, 1, 0.5))
 
 # 3. Assemble the full figure
-final_composite <- (row1 / row2 / row3 / row4) + 
+final_composite <- (row1 / row2 / row3 / row4) +
   plot_annotation(
     title = "",
     #tag_levels = list(c("1", "11", "8", "5", "2", "9", "3", "10", "4", "12", "5", "7", "13"))
   )
 
 # 4. Save
-ggsave("./figures/FINAL_DESIGN_CENTERED_4_4_2.tiff", 
+ggsave("./figures/FINAL_DESIGN_CENTERED_4_4_2.tiff",
        plot = final_composite, width = 12, height = 14, dpi = 600, compression = "lzw")
 
 print(final_composite)
