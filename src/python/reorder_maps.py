@@ -378,8 +378,8 @@ maps_file_source = os.path.join(
     "microstates_all_subjects_results_ordered.npz",
 )
 correlate_maps(maps_file_source,
-                   source_rois=[0, 1],
-                   in_folder=in_folder,
-                   base_output_dir=corr_output_dir
-                   )
+                source_rois=[0, 1],
+                in_folder=in_folder,
+                base_output_dir=corr_output_dir
+                )
 
