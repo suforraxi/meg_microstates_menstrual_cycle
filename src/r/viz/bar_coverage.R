@@ -3,7 +3,7 @@ library(readr)
 library(dplyr)
 
 # 1. Configurazione percorsi e parametri
-folder_res <- './data/'
+folder_res <- './data'
 agg_occurrences_f <- file.path(folder_res, 'aggregated_microstate_occurrences.csv')
 mapOI <- 7
 

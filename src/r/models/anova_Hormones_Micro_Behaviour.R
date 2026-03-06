@@ -2,7 +2,7 @@ library(lmerTest)
 library(dplyr)
 
 # --- 1. Load and Prep Data ---
-data <- read.csv("./merged_data_microstates_for_R.csv")
+data <- read.csv("./data/merged_data_microstates_for_R.csv")
 data$Session <- as.factor(data$Session)
 data$sub <- as.factor(data$sub)
 
