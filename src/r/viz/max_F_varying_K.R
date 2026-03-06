@@ -1,3 +1,22 @@
+library(ggplot2)
+library(dplyr)
+
+# 2. Read datasets
+df_f <- read.csv("./figures/collapse_figure/max_F_x_k.csv")
+df_sig <- read.csv("./figures/collapse_figure/n_sig_x_k.csv")
+
+# 3. Merge data and handle missing K values
+df <- df_f %>%
+  left_join(df_sig, by = "K") %>%
+  mutate(n_sig_states = ifelse(is.na(n_sig_states), 0, n_sig_states))
+
+# 4. Calculation for Dual Axis scaling
+max_f_val <- max(df$Max_F, na.rm = TRUE)
+# We force the scale to align with the integer 2 for the right axis
+scale_factor <- max_f_val / 2 
+
+# 5. Spline Interpolation ONLY for the F-statistic line
+spline_f <- as.data.frame(spline(df$K, df$Max_F, n = 500))
 # 6. Create the Plot
 p <- ggplot() +
   # Line 1: Max_F (Increased size for visibility)
