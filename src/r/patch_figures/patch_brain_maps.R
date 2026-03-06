@@ -4,7 +4,8 @@ library(patchwork)
 library(magick)
 library(ggplot2)
 
-img_path <- "./figures/brains/"
+setwd("/Users/matte/Desktop/git_rep/meg_microstates_menstrual_cycle/src/r")
+img_path <- "./figures/ordered_brains/13_microstates_ordered"
 # We list only .png files and sort them to ensure Microstate 1 comes before 10
 files <- list.files(img_path, pattern = "\\.png$", full.names = TRUE)
 files <- sort(files) # Standard alphanumeric sort
@@ -21,7 +22,7 @@ img_list <- lapply(files, function(f) {
 #ms <- function(n) img_list[[n]]
 ms <- function(n) {
   img_list[[n]] + 
-    labs(title = paste("Microstate map ", n-1)) + 
+    labs(title = paste("HDM map", n-1)) + 
     theme(
       plot.title = element_text(
         hjust = 0.5,          # Centers the title
@@ -34,17 +35,17 @@ ms <- function(n) {
 
 # 2. Construct each row individually
 # Row 1 (4 images): Naturally fills the width
-row1 <- ms(1) + ms(11) + ms(8) + ms(5) + plot_layout(ncol = 4)
+row1 <- plot_spacer() + ms(1) + ms(2)  + plot_spacer() + plot_layout(ncol = 4, widths = c(0.5, 1, 1, 0.5))
 
 # Row 2 (3 images): Centered using spacers
 # We use a 5-column logic [spacer, img, img, img, spacer] to force the 3 maps into the center
-row2 <- ms(12) + ms(2) + ms(3) + ms(9)  + plot_layout(ncol = 4)
+row2 <- ms(3) + ms(4) + ms(5) + ms(6)  + plot_layout(ncol = 4)
 
 # Row 3 (3 images): Centered
-row3 <- plot_spacer() + ms(10) + ms(4)  + plot_spacer() + plot_layout(ncol = 4, widths = c(0.5, 1, 1, 0.5))
+row3 <- ms(7) + ms(8) + ms(9) + ms(10) + plot_layout(ncol = 4)
 
 # Row 4 (3 images): Centered
-row4 <- plot_spacer() + ms(6) + ms(7) + ms(13) + plot_spacer() + plot_layout(ncol = 5, widths = c(0.5, 1, 1, 1, 0.5))
+row4 <- plot_spacer() + ms(11) + ms(12) + ms(13) + plot_spacer() + plot_layout(ncol = 5, widths = c(0.5, 1, 1, 1, 0.5))
 
 # 3. Assemble the full figure
 final_composite <- (row1 / row2 / row3 / row4) +
@@ -54,7 +55,7 @@ final_composite <- (row1 / row2 / row3 / row4) +
   )
 
 # 4. Save
-ggsave("./figures/FINAL_DESIGN_CENTERED_4_4_2.tiff",
+ggsave("./figures/ORDERED_BRAINS.tiff",
        plot = final_composite, width = 12, height = 14, dpi = 600, compression = "lzw")
 
 print(final_composite)
