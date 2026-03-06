@@ -80,7 +80,7 @@ def process_microstate_hormones(n_peaks, n_microstates, microstate_file, hormone
     """
     # Load the data
     microstate_df = pd.read_csv(microstate_file)
-    hormones_df = pd.read_csv(hormones_file, sep=',')
+    hormones_df = pd.read_csv(hormones_file)  # Assuming the hormones data is in CSV format
 
     # Reshape the hormones data to long format
     hormones_long = pd.melt(
@@ -209,9 +209,9 @@ def plot_occurrences_per_subject(df, output_folder):
 # Example usage
 n_peaks = '1000'
 n_microstates = 13
-base_folder= os.path.join(os.getcwd(), 'results', n_peaks)
+base_folder= os.path.join(os.getcwd(), 'results', f'24_{n_peaks}')
 data_folder = os.path.join(base_folder, f'{n_microstates}_backfitted_microstates', 'combined')
-microstates = [2, 7]
+microstates = [7, 2]
 psi_labels = ['Autonomy', 'EnvironmentalMastery',
               'PersonalGrowth', 'PositiveRelationswithOthers', 
               'PurposeinLife', 'Self-Acceptance']
